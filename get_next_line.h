@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iblanco- <iblanco-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: inigo <inigo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 16:43:33 by iblanco-          #+#    #+#             */
-/*   Updated: 2022/11/07 16:57:29 by iblanco-         ###   ########.fr       */
+/*   Updated: 2022/11/08 21:04:37 by inigo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,5 +22,6 @@ void	*ft_memcpy(void *dest, const void *src, size_t n);
 char	*ft_strjoin(char const *s1, char const *s2);
 int		ft_strlen(const char *a);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
+char	*ft_mod_substr(char const *s, unsigned int start);
 
 #endif

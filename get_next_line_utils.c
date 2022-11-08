@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iblanco- <iblanco-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: inigo <inigo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/01 18:19:38 by inigo             #+#    #+#             */
-/*   Updated: 2022/11/07 17:33:10 by iblanco-         ###   ########.fr       */
+/*   Updated: 2022/11/08 21:02:22 by inigo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,6 +101,32 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	char				*ret;
 	size_t				i;
 
+	i = 0;
+	if (!s)
+		return (0);
+	else if ((unsigned int)ft_strlen(s) < start)
+		len = 0;
+	else if (ft_strlen(s) - start < len)
+		len = ft_strlen(s) - start;
+	ret = ((char *)malloc(sizeof(char) * (len + 1)));
+	if (ret == NULL)
+		return (0);
+	while (len > (size_t)i)
+	{
+		ret[i] = s[start + i];
+		i++;
+	}
+	ret[i] = '\0';
+	return (ret);
+}
+
+char	*ft_mod_substr(char const *s, unsigned int start)
+{
+	char				*ret;
+	size_t				i;
+	size_t				len;
+	
+	len = ft_strlen(s);
 	i = 0;
 	if (!s)
 		return (0);

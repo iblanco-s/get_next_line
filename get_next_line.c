@@ -6,7 +6,7 @@
 /*   By: inigo <inigo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/01 18:16:02 by inigo             #+#    #+#             */
-/*   Updated: 2022/11/08 20:31:45 by inigo            ###   ########.fr       */
+/*   Updated: 2022/11/08 21:05:44 by inigo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,22 +17,27 @@ char	*get_next_line(int fd)
 {
 	//static ssize_t		i;
 	static char			*acumulator;
+	static char			*temp;
 	char				buffer[BUFFER_SIZE];
-	char				*temp;
 
-
-	//i = 0;
 	if (fd < -1)
 		return (NULL);
 	acumulator = malloc(1);
 	if (!acumulator)
 		return (NULL);
 	acumulator[0] = '\0';
-	//read(fd, buffer, BUFFER_SIZE);
-	while (BUFFER_SIZE == read(fd, buffer, BUFFER_SIZE))
+	while (read(fd, buffer, BUFFER_SIZE))
 	{
+		//i = 0;
 		temp = ft_strjoin(acumulator, buffer);
 		acumulator = temp;
+		// while (acumulator[i] != '\0')
+		// {
+		// 	if(acumulator[i] == '\n')
+		// 	{
+		// 		ft_mod_substr(acumulator, s)
+		// 	}
+		// }
 		//printf("\nDEPURAR %s", acumulator);
 	}
 	return (acumulator);
