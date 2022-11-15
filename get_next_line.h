@@ -6,7 +6,7 @@
 /*   By: inigo <inigo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 16:43:33 by iblanco-          #+#    #+#             */
-/*   Updated: 2022/11/08 21:04:37 by inigo            ###   ########.fr       */
+/*   Updated: 2022/11/10 18:06:35 by inigo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,5 +23,6 @@ char	*ft_strjoin(char const *s1, char const *s2);
 int		ft_strlen(const char *a);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 char	*ft_mod_substr(char const *s, unsigned int start);
+int		ft_check_n(char *acumulator);
 
 #endif

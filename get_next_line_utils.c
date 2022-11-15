@@ -6,7 +6,7 @@
 /*   By: inigo <inigo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/01 18:19:38 by inigo             #+#    #+#             */
-/*   Updated: 2022/11/08 21:02:22 by inigo            ###   ########.fr       */
+/*   Updated: 2022/11/10 18:06:19 by inigo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,3 +145,19 @@ char	*ft_mod_substr(char const *s, unsigned int start)
 	ret[i] = '\0';
 	return (ret);
 }
+
+int ft_check_n(char *acumulator)
+{
+  int i;
+ 
+  i = 0;
+  while (acumulator[i] != '\0')
+  {
+    if(acumulator[i] == '\n')
+      return (i);
+    i++;
+  }
+  i = -1;
+  return (i);
+}
+
