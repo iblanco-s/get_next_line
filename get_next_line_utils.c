@@ -6,7 +6,7 @@
 /*   By: inigo <inigo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/01 18:19:38 by inigo             #+#    #+#             */
-/*   Updated: 2022/11/10 18:06:19 by inigo            ###   ########.fr       */
+/*   Updated: 2022/11/16 19:28:20 by inigo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	*ft_memcpy(void *dest, const void *src, size_t n)
 	return (dest);
 }
 
-char	*ft_strjoin(char const *s1, char const *s2)
+char	*ft_strjoin(char const *s1, char const *s2, int lens2)
 {
 	size_t		i;
 	size_t		j;
@@ -49,22 +49,23 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	char		*ret;
 
 	i = ft_strlen(s1);
-	j = ft_strlen(s2);
+	j = lens2;
 	k = 0;
 	ret = (malloc((i + j + 1) * sizeof(char)));
 	if (ret == NULL)
 		return (0);
-	j = 0;
+	i = 0;
 	while (s1[k] != '\0')
 	{
 		ret[k] = s1[k];
 		k++;
 	}
-	while (s2[j] != '\0')
+	while (j > 0)
 	{
-		ret[k] = s2[j];
+		ret[k] = s2[i];
 		k++;
-		j++;
+		i++;
+		j--;
 	}
 	ret[k] = '\0';
 	return (ret);

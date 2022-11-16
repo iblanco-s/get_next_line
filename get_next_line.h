@@ -6,7 +6,7 @@
 /*   By: inigo <inigo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 16:43:33 by iblanco-          #+#    #+#             */
-/*   Updated: 2022/11/10 18:06:35 by inigo            ###   ########.fr       */
+/*   Updated: 2022/11/16 19:22:42 by inigo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 
 char	*get_next_line(int fd);
 void	*ft_memcpy(void *dest, const void *src, size_t n);
-char	*ft_strjoin(char const *s1, char const *s2);
+char	*ft_strjoin(char const *s1, char const *s2, int lens2);
 int		ft_strlen(const char *a);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 char	*ft_mod_substr(char const *s, unsigned int start);
