@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iblanco- <iblanco-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: inigo <inigo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 16:43:33 by iblanco-          #+#    #+#             */
-/*   Updated: 2022/11/21 16:34:45 by iblanco-         ###   ########.fr       */
+/*   Updated: 2022/11/21 21:55:37 by inigo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,5 +26,6 @@ char	*ft_mod_substr(char const *s, unsigned int start);
 int		ft_check_n(char *acumulator);
 char	*ft_read(char *acumulator, int *j, int fd);
 char	*ft_divide(char **acumulator, int *i);
+char	*ft_first(int *j);
 
 #endif

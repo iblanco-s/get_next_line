@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iblanco- <iblanco-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: inigo <inigo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/01 18:16:02 by inigo             #+#    #+#             */
-/*   Updated: 2022/11/21 16:46:19 by iblanco-         ###   ########.fr       */
+/*   Updated: 2022/11/21 21:56:54 by inigo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,18 @@ char	*ft_divide(char **acumulator, int *i)
 	return (temp);
 }
 
+char	*ft_first(int *j)
+{
+	char	*str;
+
+	str = malloc(1);
+	if (!str)
+		return (NULL);
+	str[0] = '\0';
+	*j = BUFFER_SIZE;
+	return (str);
+}
+
 char	*get_next_line(int fd)
 {
 	static int			i;
@@ -32,13 +44,7 @@ char	*get_next_line(int fd)
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
 	if (!acumulator)
-	{
-		acumulator = malloc(1);
-		if (!acumulator)
-			return (NULL);
-		acumulator[0] = '\0';
-		j = BUFFER_SIZE;
-	}
+		acumulator = ft_first(&j);
 	while (j == BUFFER_SIZE || ft_check_n(acumulator) >= 0)
 	{
 		i = ft_check_n(acumulator);
