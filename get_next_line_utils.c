@@ -6,7 +6,7 @@
 /*   By: iblanco- <iblanco-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/01 18:19:38 by inigo             #+#    #+#             */
-/*   Updated: 2022/11/18 13:14:18 by iblanco-         ###   ########.fr       */
+/*   Updated: 2022/11/21 16:15:20 by iblanco-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,4 +89,21 @@ int	ft_check_n(char *acumulator)
 		return (-3);
 	else
 		return (-1);
+}
+
+char	*ft_read(char *acumulator, int *j, int fd)
+{
+	char	*buffer;
+	char	*temp;
+
+	buffer = malloc(BUFFER_SIZE + 1);
+	if (!buffer)
+		return (NULL);
+	*j = read(fd, buffer, BUFFER_SIZE);
+	buffer[*j] = '\0';
+	temp = ft_strjoin(acumulator, buffer, *j);
+	free (acumulator);
+	free (buffer);
+	acumulator = temp;
+	return (acumulator);
 }
