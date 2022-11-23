@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: inigo <inigo@student.42.fr>                +#+  +:+       +#+        */
+/*   By: iblanco- <iblanco-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/01 18:19:38 by inigo             #+#    #+#             */
-/*   Updated: 2022/11/22 18:34:42 by inigo            ###   ########.fr       */
+/*   Updated: 2022/11/23 17:20:26 by iblanco-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+#include <stdio.h>
 
 int	ft_strlen(const char *a)
 {
@@ -39,12 +40,11 @@ char	*ft_strjoin(char const *s1, char const *s2, int lens2)
 		ret[k] = s1[k];
 		k++;
 	}
-	while (lens2 > 0)
+	while (s2[i])
 	{
 		ret[k] = s2[i];
 		k++;
 		i++;
-		lens2--;
 	}
 	ret[k] = '\0';
 	return (ret);
@@ -76,6 +76,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 
 int	ft_check_n(char *acumulator)
 {
+	static int	j = 0;
 	int	i;
 
 	i = 0;
@@ -85,16 +86,17 @@ int	ft_check_n(char *acumulator)
 			return (i);
 		i++;
 	}
-	if (acumulator[0] == '\0')
+	if (j == 0)
+		return (j++, -1);
+	else	
 		return (-3);
-	else
-		return (-1);
 }
 
 char	*ft_read(char *acumulator, int *j, int fd)
 {
 	char	*buffer;
 	char	*temp;
+	int		i;
 
 	buffer = malloc(BUFFER_SIZE + 1);
 	if (!buffer)
@@ -103,10 +105,39 @@ char	*ft_read(char *acumulator, int *j, int fd)
 	if (*j > 0)
 	{
 		buffer[*j] = '\0';
-		temp = ft_strjoin(acumulator, buffer, *j);
-		free (acumulator);
-		free (buffer);
-		acumulator = temp;
+		temp = acumulator;
+		acumulator = ft_strjoin(temp, buffer, *j);
+		free (temp);
+		temp = NULL; //el porque preguntar a jon/es
 	}
+	free (buffer);
+	buffer = NULL;
+	i = ft_check_n(acumulator);
+	if (i >= 0)
+		return (ft_divide(&acumulator, &i));
 	return (acumulator);
+}
+
+
+char	*ft_read(int fd)
+{
+	static int		j = BUFFER_SIZE;
+	static char		*acumulator;
+	char			*temp;
+	char			*buffer;
+	
+	buffer = malloc(BUFFER_SIZE + 1);
+	while (j == BUFFER_SIZE)
+	{
+		j = read(fd, buffer, BUFFER_SIZE);
+		buffer[*j] = '\0';
+		if (j <= 0)
+			break;
+		if (!acumulator)
+			acumulator = ft_first();
+		temp = ft_strjoin(acumulator, buffer, *j);
+		acumulator = temp;
+		free
+		
+	}
 }
