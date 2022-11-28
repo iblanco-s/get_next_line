@@ -5,15 +5,15 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: iblanco- <iblanco-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/01 18:19:38 by inigo             #+#    #+#             */
-/*   Updated: 2022/11/23 17:20:26 by iblanco-         ###   ########.fr       */
+/*   Created: 2022/11/28 11:08:47 by iblanco-          #+#    #+#             */
+/*   Updated: 2022/11/28 13:06:18 by iblanco-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 #include <stdio.h>
 
-int	ft_strlen(const char *a)
+int	ft_strlen(char *a)
 {
 	int	len;
 
@@ -23,24 +23,23 @@ int	ft_strlen(const char *a)
 	return (len);
 }
 
-char	*ft_strjoin(char const *s1, char const *s2, int lens2)
+char	*ft_strjoin(char *s1, char *s2)
 {
 	size_t		i;
 	size_t		k;
 	char		*ret;
 
-	i = ft_strlen(s1);
-	k = 0;
-	ret = (malloc((i + lens2 + 1) * sizeof(char)));
-	if (ret == NULL)
-		return (0);
 	i = 0;
+	k = 0;
+	ret = (malloc((ft_strlen(s1) + ft_strlen(s2) + 1) * sizeof(char)));
+	if (!ret)
+		return (0);
 	while (s1[k] != '\0')
 	{
 		ret[k] = s1[k];
 		k++;
 	}
-	while (s2[i])
+	while (s2[i] != '\0')
 	{
 		ret[k] = s2[i];
 		k++;
@@ -50,7 +49,7 @@ char	*ft_strjoin(char const *s1, char const *s2, int lens2)
 	return (ret);
 }
 
-char	*ft_substr(char const *s, unsigned int start, size_t len)
+char	*ft_substr(char *s, unsigned int start, size_t len)
 {
 	char				*ret;
 	size_t				i;
@@ -76,7 +75,6 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 
 int	ft_check_n(char *acumulator)
 {
-	static int	j = 0;
 	int	i;
 
 	i = 0;
@@ -86,58 +84,31 @@ int	ft_check_n(char *acumulator)
 			return (i);
 		i++;
 	}
-	if (j == 0)
-		return (j++, -1);
-	else	
-		return (-3);
+	return (-1);
 }
 
-char	*ft_read(char *acumulator, int *j, int fd)
+char	*ft_read(char *acumulator, char *buffer, int fd)
 {
-	char	*buffer;
-	char	*temp;
-	int		i;
+	char		*temp;
+	int			j;
 
-	buffer = malloc(BUFFER_SIZE + 1);
-	if (!buffer)
-		return (NULL);
-	*j = read(fd, buffer, BUFFER_SIZE);
-	if (*j > 0)
-	{
-		buffer[*j] = '\0';
-		temp = acumulator;
-		acumulator = ft_strjoin(temp, buffer, *j);
-		free (temp);
-		temp = NULL; //el porque preguntar a jon/es
-	}
-	free (buffer);
-	buffer = NULL;
-	i = ft_check_n(acumulator);
-	if (i >= 0)
-		return (ft_divide(&acumulator, &i));
-	return (acumulator);
-}
-
-
-char	*ft_read(int fd)
-{
-	static int		j = BUFFER_SIZE;
-	static char		*acumulator;
-	char			*temp;
-	char			*buffer;
-	
-	buffer = malloc(BUFFER_SIZE + 1);
-	while (j == BUFFER_SIZE)
+	j = 42;
+	while (j > 0)
 	{
 		j = read(fd, buffer, BUFFER_SIZE);
-		buffer[*j] = '\0';
-		if (j <= 0)
-			break;
+		if (j < 0)
+			return (NULL);
+		else if (j == 0)
+			break ;
 		if (!acumulator)
 			acumulator = ft_first();
-		temp = ft_strjoin(acumulator, buffer, *j);
-		acumulator = temp;
-		free
-		
+		buffer[j] = '\0';
+		temp = acumulator;
+		acumulator = ft_strjoin(temp, buffer);
+		free(temp);
+		temp = NULL;
+		if (ft_check_n(acumulator) >= 0)
+			break ;
 	}
+	return (acumulator);
 }
