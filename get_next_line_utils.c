@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iblanco- <iblanco-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: inigo <inigo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 11:08:47 by iblanco-          #+#    #+#             */
-/*   Updated: 2022/11/28 13:06:18 by iblanco-         ###   ########.fr       */
+/*   Updated: 2022/11/29 20:22:13 by inigo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,22 +87,20 @@ int	ft_check_n(char *acumulator)
 	return (-1);
 }
 
-char	*ft_read(char *acumulator, char *buffer, int fd)
+char	*ft_read(char *acumulator, char *buffer, int fd, int *j)
 {
 	char		*temp;
-	int			j;
 
-	j = 42;
-	while (j > 0)
+	while (*j > 0)
 	{
-		j = read(fd, buffer, BUFFER_SIZE);
-		if (j < 0)
+		*j = read(fd, buffer, BUFFER_SIZE);
+		if (*j < 0)
 			return (NULL);
-		else if (j == 0)
+		else if (*j == 0)
 			break ;
 		if (!acumulator)
 			acumulator = ft_first();
-		buffer[j] = '\0';
+		buffer[*j] = '\0';
 		temp = acumulator;
 		acumulator = ft_strjoin(temp, buffer);
 		free(temp);
