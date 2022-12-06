@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: inigo <inigo@student.42.fr>                +#+  +:+       +#+        */
+/*   By: iblanco- <iblanco-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 11:08:47 by iblanco-          #+#    #+#             */
-/*   Updated: 2022/11/29 20:22:13 by inigo            ###   ########.fr       */
+/*   Updated: 2022/11/30 17:28:35 by iblanco-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-#include <stdio.h>
 
 int	ft_strlen(char *a)
 {
@@ -85,28 +84,4 @@ int	ft_check_n(char *acumulator)
 		i++;
 	}
 	return (-1);
-}
-
-char	*ft_read(char *acumulator, char *buffer, int fd, int *j)
-{
-	char		*temp;
-
-	while (*j > 0)
-	{
-		*j = read(fd, buffer, BUFFER_SIZE);
-		if (*j < 0)
-			return (NULL);
-		else if (*j == 0)
-			break ;
-		if (!acumulator)
-			acumulator = ft_first();
-		buffer[*j] = '\0';
-		temp = acumulator;
-		acumulator = ft_strjoin(temp, buffer);
-		free(temp);
-		temp = NULL;
-		if (ft_check_n(acumulator) >= 0)
-			break ;
-	}
-	return (acumulator);
 }
